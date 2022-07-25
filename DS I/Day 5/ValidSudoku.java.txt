@@ -1,0 +1,56 @@
+class Solution{
+public boolean Valid(char[][] board){
+int r[][]=new int[9][9];
+    int c[][]=new int[9][9];
+    int b[][][]=new int[9][3][3];
+    int i, j,m,n;
+    
+    for(i=0;i<9;i++)
+    {
+        for(m=0;m<3;m++)
+        {
+            for(n=0;n<3;n++)
+            {
+                b[i][m][n]=-1;
+            }
+        }
+        
+        for(j=0;j<9;j++)
+        {
+            r[i][j]=-1;
+            c[i][j]=-1;
+           
+        }
+    }
+    
+    for(i=0; i<9;i++)
+    {
+        for(j=0; j<9;j++)
+        {
+            if(board[i][j]=='.')
+                continue;
+            else
+            {
+                // if digit is already fillid then return false else store r,c
+                if(r[board[i][j]-49][i]!=-1)
+                    return false;
+                if(c[board[i][j]-49][j]!=-1)
+                    return false;
+                
+                m=i/3;//get block row
+                n=j/3;//get block coloum
+                
+                // if digit block is already fillid then return false else store block m,n
+                if(b[board[i][j]-49][m][n]!=-1)
+                    return false;
+                
+                r[board[i][j]-49][i]=0;
+                c[board[i][j]-49][j]=0;
+                b[board[i][j]-49][m][n]=0;
+            }
+        }
+    }
+    
+    return true;
+}
+}
