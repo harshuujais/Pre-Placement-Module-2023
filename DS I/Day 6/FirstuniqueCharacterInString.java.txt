@@ -1,0 +1,21 @@
+class Solution {
+    public int firstUniqChar(String s) {
+        int[] count = new int[26];
+        int n = s.length();
+        // build char count bucket : <charIndex, count>
+        for (int i = 0; i < n; i++) {            
+            int index = s.charAt(i) - 'a';
+            count[index]++;     //If character comes only 1 time then i is incremented once otherwise if it comes more than 1 then that value at index of that character becomes more than 1
+        }
+        
+        // find the index
+        for (int i = 0; i < n; i++) {
+            int index = s.charAt(i) - 'a';
+            if (count[index] == 1) {
+                return i;
+            }
+                
+        }
+        return -1;
+    }
+}

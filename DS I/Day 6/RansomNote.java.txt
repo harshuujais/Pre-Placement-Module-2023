@@ -1,0 +1,22 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        ArrayList<Character> letters=new ArrayList<>();
+        for(int i=0;i<magazine.length();i++){
+            letters.add(magazine.charAt(i));
+        }
+        int i=0,j=0;
+        // boolean flag=true;
+        while(i<ransomNote.length()){
+            if(j==letters.size())
+                return false;
+            if(ransomNote.charAt(i)==letters.get(j)){
+                i++;
+                letters.remove(j);
+                j=0;
+            }
+            else
+                j++;
+        }
+        return true;
+    }
+}
